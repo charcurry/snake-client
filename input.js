@@ -1,6 +1,7 @@
 // setup interface to handle user input from stdin
 // Stores the active TCP connection object.
-let connection;
+const { moveUpKey, moveDownKey, moveLeftKey, moveRightKey, exitKey } = require("./constants");
+  let connection;
 
 const setupInput = function (conn) {
   connection = conn;
@@ -13,26 +14,28 @@ const setupInput = function (conn) {
 };
 
 const handleUserInput = function (input) {
- if (input === '\u0003') {
+ if (input === exitKey) {
   process.exit()
- } else if (input === '\u0077') {
+ } else if (input === moveUpKey) {
   connection.write("Move: up")
- } else if (input === '\u0061') {
+ } else if (input === moveLeftKey) {
   connection.write("Move: left")
- } else if (input === '\u0073') {
+ } else if (input === moveDownKey) {
   connection.write("Move: down")
- } else if (input === '\u0064') {
+ } else if (input === moveRightKey) {
   connection.write("Move: right")
- } else if (input === '\u0067') {
-  connection.write("Say: GG")
- } else if (input === '\u0065') {
-  connection.write("Say: Eat my dust")
- } else if (input === '\u0071') {
-  connection.write("Say: LOL")
- } else if (input === '\u0074') {
-  connection.write("Say: Thanks!")
- } else if (input === '\u0066') {
-  connection.write("Say: Hello")
+ }
+
+ let messages = {
+ '\u0067': "Say: GG",
+ '\u0065': "Say: Eat my dust",
+ '\u0071': "Say: LOL",
+ '\u0074': "Say: Thanks!",
+ '\u0066': "Say: Hello"
+} 
+
+if (messages.hasOwnProperty(input)) {
+  connection.write(messages[input])
  }
 };
 
