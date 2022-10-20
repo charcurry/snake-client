@@ -23,6 +23,16 @@ const handleUserInput = function (input) {
   connection.write("Move: down")
  } else if (input === '\u0064') {
   connection.write("Move: right")
+ } else if (input === '\u0067') {
+  connection.write("Say: GG")
+ } else if (input === '\u0065') {
+  connection.write("Say: Eat my dust")
+ } else if (input === '\u0071') {
+  connection.write("Say: LOL")
+ } else if (input === '\u0074') {
+  connection.write("Say: Thanks!")
+ } else if (input === '\u0066') {
+  connection.write("Say: Hello")
  }
 };
 
